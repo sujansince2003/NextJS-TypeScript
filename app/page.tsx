@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ProductCard from "./Components/ProductCard";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       <Link href={"/about/company"}>About company</Link>
 
       {/* use Link instead of anchor tag it doesnot reload the application and only make network request required for that page we are going to navigate */}
+
+      <ProductCard />
     </div>
   );
 }
