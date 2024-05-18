@@ -2,7 +2,11 @@
 import React from "react";
 
 function Enrollbtn() {
-  return <button onClick={() => alert("hello")}>Enroll</button>;
+  return (
+    <button className="btn btn-neutral" onClick={() => alert("hello")}>
+      Enroll
+    </button>
+  );
 }
 
 export default Enrollbtn;
