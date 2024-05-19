@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import React from "react";
 interface Props {
   params: { userid: number };
@@ -6,6 +7,8 @@ interface Props {
 
 // by default page receive params as props so destructing it
 const page = ({ params, searchParams }: Props) => {
+  // want to show not found page is id is greate than 10
+  if (params.userid > 10) notFound();
   return (
     <div>
       userid is {params.userid} {searchParams.sortOrder}
