@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 import UserTable from "./UserTable";
+import Link from "next/link";
 
 interface routeProps {
   searchParams: { sortOrder: string };
@@ -11,7 +12,12 @@ const page = async ({ searchParams: { sortOrder } }: routeProps) => {
     <div>
       <h1>users list</h1>
       {/* <p>{new Date().toLocaleString()}</p> */}
-      <UserTable sortOrder={sortOrder} />
+      <Link href={"/newuser"} className="bg-violet-300 px-5 py-3 rounded-xl  ">
+        New User
+      </Link>
+      <Suspense fallback={<p>Loading.....</p>}>
+        <UserTable sortOrder={sortOrder} />
+      </Suspense>
     </div>
   );
 };
