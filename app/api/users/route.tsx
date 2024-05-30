@@ -7,3 +7,12 @@ export function GET(request: NextRequest) {
     name: "sujan",
   });
 }
+
+//creating POST request
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  if (!body.name)
+    return NextResponse.json({ error: "name is requierd" }, { status: 401 });
+  return NextResponse.json(body);
+}
