@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import Userschema from "../schema";
 
 export function GET(
   request: NextRequest,
@@ -18,8 +19,26 @@ export async function PUT(
 ) {
   const body = await request.json();
 
-  if (!body.name) {
-    return NextResponse.json({ error: "name is required" }, { status: 400 });
+  const validation = Userschema.safeParse(body);
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
+
+    /**
+     validation.error.errors returns array like this
+     [
+    {
+        "code": "too_small",
+        "minimum": 3,
+        "type": "string",
+        "inclusive": true,
+        "exact": false,
+        "message": "String must contain at least 3 character(s)",
+        "path": [
+            "name"
+        ]
+    }
+]
+     */
   }
   if (params.userid > 10) {
     return NextResponse.json({ error: "user not found" }, { status: 404 });
