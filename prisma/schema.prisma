@@ -9,14 +9,26 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId //Prisma ORM does not support fields starting with _, so this needs to be mapped to a Prisma ORM field using the @map attribute. 
   email     String  @unique
   username  String  @unique
   followers Int     @default(0)
   isactive  Boolean @default(true)
 }
+
+model Pser {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId //Prisma ORM does not support fields starting with _, so this needs to be mapped to a Prisma ORM field using the @map attribute. 
+  email     String  @unique
+  username  String  @unique
+  followers Int     @default(0)
+  isactive  Boolean @default(true)
+}
+
+// creating the migratiion.this helps to bulild the conection bwtween prisma model and database model
+// for realtion db  npx prisma migrate dev
+//for non relational(mongodb) npx db push 
