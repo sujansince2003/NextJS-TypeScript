@@ -66,17 +66,30 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { userid: number } }
+  { params }: { params: { userid: string } }
 ) {
   const body = await request.json();
-  if (!body.name) {
-    return NextResponse.json(
-      { error: "sorry name is required" },
-      { status: 400 }
-    );
+  const userid = params.userid;
+  if (!userid) {
+    return NextResponse.json({ error: "Invalid user id" }, { status: 400 });
   }
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userid,
+    },
+  });
+  if (!user) {
+    return NextResponse.json({ error: "user doesnot exist" }, { status: 400 });
+  }
+
+  const deleteduser = await prisma.user.delete({
+    where: {
+      id: user.id,
+    },
+  });
   return NextResponse.json(
-    { success: "object deleted succesfully" },
+    { success: "object deleted succesfully", data: deleteduser },
     { status: 200 }
   );
 }
