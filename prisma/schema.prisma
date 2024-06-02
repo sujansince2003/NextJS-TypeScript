@@ -21,6 +21,13 @@ model User {
   isactive  Boolean @default(true)
 }
 
+model Product {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId //Prisma ORM does not support fields starting with _, so this needs to be mapped to a Prisma ORM field using the @map attribute. 
+  name    String
+  price   Int
+  instock Boolean @default(true)
+}
+
 // creating the migratiion.this helps to bulild the conection bwtween prisma model and database model
 // for realtion db  npx prisma migrate dev
 //for non relational(mongodb) npx db push 
