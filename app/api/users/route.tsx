@@ -16,6 +16,24 @@ export async function POST(request: NextRequest) {
   if (!(body.email && body.username))
     return NextResponse.json({ error: "name is requierd" }, { status: 401 });
 
+  const existingUseremail = await prisma.user.findUnique({
+    where: {
+      email: body.email,
+    },
+  });
+  const existingUserusername = await prisma.user.findUnique({
+    where: {
+      email: body.username,
+    },
+  });
+
+  if (existingUseremail || existingUserusername) {
+    return NextResponse.json(
+      { error: "username or email is already taken" },
+      { status: 400 }
+    );
+  }
+
   const user = await prisma.user.create({
     data: {
       username: body.username,
