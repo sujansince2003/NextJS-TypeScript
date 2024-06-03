@@ -29,6 +29,10 @@ const page = () => {
           }
         }}
         uploadPreset="xhbfwmap"
+        options={{
+          sources: ["local"],
+          multiple: false,
+        }}
       >
         {({ open }) => {
           return (
