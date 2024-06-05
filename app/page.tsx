@@ -8,7 +8,7 @@ export default async function Home() {
   const session = await getServerSession(options);
   return (
     <div>
-      <h1>Hello {session && session.user!.name}</h1>
+      <h1>Hello {session && session.user!.email}</h1>
       <a href="/about" className="block">
         About us
       </a>
