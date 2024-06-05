@@ -1,9 +1,12 @@
 // Import necessary modules from next-auth
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
+import prisma from "@/prisma/client";
 
 // Define the NextAuth configuration
 export const options = {
+  adapter:PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
