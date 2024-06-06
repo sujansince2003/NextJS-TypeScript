@@ -6,7 +6,7 @@ interface cloudniaryResult {
   pubic_id: string;
 }
 
-const page = () => {
+const Upload = () => {
   const [imgid, setImgid] = useState<string>("");
   return (
     <div>
@@ -46,4 +46,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Upload;

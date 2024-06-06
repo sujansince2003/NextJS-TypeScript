@@ -2,9 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductCard from "./Components/ProductCard";
 import { getServerSession } from "next-auth";
-import { options } from "./api/auth/[...nextauth]/route";
+
 import type { Metadata } from "next";
 import Heavycomp from "./Components/Heavycomp";
+import { options } from "./api/auth/options";
 
 export default async function Home() {
   const session = await getServerSession(options);

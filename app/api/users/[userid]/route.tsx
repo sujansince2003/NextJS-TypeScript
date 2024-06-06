@@ -51,14 +51,14 @@ export async function PUT(
     return NextResponse.json({ error: "User doesnot exist" }, { status: 400 });
   }
 
-  const updatedUser = await prisma.user.update({
-    where: {
-      id: user.id,
-    },
-    data: {
-      username: body.username,
-    },
-  });
+  // const updatedUser = await prisma.user.update({
+  //   where: {
+  //     id: user.id,
+  //   },
+  //   data: {
+  //     username: body.username,
+  //   },
+  // });
   return NextResponse.json(user);
 }
 

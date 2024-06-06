@@ -13,7 +13,7 @@ const Heavycomp = dynamic(
   }
 );
 
-const page = () => {
+const Lazy = () => {
   const [isVisible, setIsvisible] = useState<boolean>(false);
   return (
     <div>
@@ -29,4 +29,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Lazy;
