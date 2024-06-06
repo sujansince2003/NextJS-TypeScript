@@ -4,6 +4,7 @@ import ProductCard from "./Components/ProductCard";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/route";
 import type { Metadata } from "next";
+import Heavycomp from "./Components/Heavycomp";
 
 export default async function Home() {
   const session = await getServerSession(options);
@@ -19,6 +20,7 @@ export default async function Home() {
       <Link href={"/about/company"}>About company</Link>
       {/* use Link instead of anchor tag it doesnot reload the application and only make network request required for that page we are going to navigate */}
       <ProductCard />
+      <Heavycomp />
     </div>
   );
 }
