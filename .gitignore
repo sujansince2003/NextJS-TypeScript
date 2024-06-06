@@ -28,6 +28,9 @@ yarn-error.log*
 .env*.local
 .env
 
+
+#react email
+.react-email/
 # vercel
 .vercel
 
