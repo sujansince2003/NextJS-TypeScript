@@ -3,12 +3,13 @@ import Link from "next/link";
 import ProductCard from "./Components/ProductCard";
 import { getServerSession } from "next-auth";
 import { options } from "./api/auth/[...nextauth]/route";
+import type { Metadata } from "next";
 
 export default async function Home() {
   const session = await getServerSession(options);
   return (
     <div>
-      <h1>Hello {session && session.user!.email}</h1>
+      <h1 className="font-poppins">Hello {session && session.user!.email}</h1>
       <a href="/about" className="block">
         About us
       </a>
@@ -20,4 +21,13 @@ export default async function Home() {
       <ProductCard />
     </div>
   );
+}
+
+// we can have metadata for individual pages.lets say we are in product page and we are fetching product and genreating metadata then
+export async function generateMetadata(): Promise<Metadata> {
+  // fetch product data  // generateMetadata is naming convention
+  return {
+    // title:product?.title,
+    // description:product?.description
+  };
 }
